@@ -1,0 +1,22 @@
+//Функция для вычисления шрифта в rem
+@function calcRem($size)
+  @return ($size / 16px) * 1rem
+
+//Миксин для вычисления шрифта в rem
+=rem($size)
+  font-size: calcRem($size)
+
+  // Использовать можно так:
+  // p
+  //  +rem(14px)
+
+//Clearfix-хак
+=cf()
+
+  &::before,
+  &::after 
+    content: ""
+    display: table
+
+  &::after 
+    clear: both
