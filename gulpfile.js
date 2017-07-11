@@ -93,6 +93,14 @@ gulp.task('scripts', function() {
 //Линтинг JS-кода
 gulp.task('eslint', function() {
     return gulp.src([paths.devDir + 'js/*.js', '!' + paths.devDir + 'js/*.min.js', '!' + paths.devDir + 'js/libs.js'])
+    .pipe(plumber({
+      errorHandler: notify.onError(function(err) {
+        return {
+          title: 'Js',
+          message: err.message
+        };
+      })
+    }))
     .pipe(eslint({
         fix: true,
         rules: {
